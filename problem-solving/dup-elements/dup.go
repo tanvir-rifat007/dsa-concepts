@@ -44,7 +44,7 @@ func findDuplicateUsingHashmap(arr []int) bool {
 
 func main() {
 
-	arr := []int{1, 2, 4, 2, 1, 10}
+	arr := []int{1, 2, 4, 3, 100, 10}
 
 	fmt.Printf("%v\n", findDuplicateUsingHashmap(arr))
 
