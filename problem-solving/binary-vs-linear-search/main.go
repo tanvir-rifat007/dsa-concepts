@@ -5,6 +5,7 @@ import (
 	"log"
 	"math"
 	"math/rand"
+	"net/http"
 	"time"
 
 	"gonum.org/v1/plot"
@@ -101,4 +102,14 @@ func main() {
 	if err := p.Save(8*vg.Inch, 6*vg.Inch, "search_comparison.png"); err != nil {
 		log.Fatal(err)
 	}
+
+	mux := http.NewServeMux()
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+
+		http.ServeFile(w, r, "search_comparison.png")
+	})
+
+	fmt.Println("Serving on http://localhost:8080")
+
+	http.ListenAndServe(":8080", mux)
 }
