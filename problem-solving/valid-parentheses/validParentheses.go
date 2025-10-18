@@ -1,38 +1,39 @@
 package main
 
-func validParenthesis(s []string) bool {
+import "fmt"
+
+func validParentheses(s string) bool {
 
 	if len(s) == 0 {
 		return false
 	}
+	var res []rune
 
-	var res []string
+	for _, ch := range s {
 
-	for i, _ := range s {
-		if s[i] == "(" {
-			res = append(res, ")")
-
-		} else if s[i] == "[" {
-
-			res = append(res, "]")
-		} else if s[i] == "{" {
-			res = append(res, "}")
-
+		if ch == '(' {
+			res = append(res, ')')
+		} else if ch == '{' {
+			res = append(res, '}')
+		} else if ch == '[' {
+			res = append(res, ']')
 		} else {
-			if len(res) == 0 || res[len(res)-1] != s[i] {
+			if len(res) == 0 || res[len(res)-1] != ch {
+
 				return false
 			}
+
 			res = res[:len(res)-1]
+
 		}
 
 	}
 
 	return len(res) == 0
+
 }
 
 func main() {
 
-	s := []string{"(", "[", "]", ")"}
-	validParenthesis(s)
-
+	fmt.Println(validParentheses("((()])"))
 }

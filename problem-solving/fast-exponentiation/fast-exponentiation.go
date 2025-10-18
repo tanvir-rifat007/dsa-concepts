@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func binpow(a float64, b int64) float64 {
+func binpow(a float64, b int) float64 {
 	/*
 		 recursive approach
 			if b == 0 {
