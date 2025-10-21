@@ -2,6 +2,32 @@ package main
 
 import "fmt"
 
+func dfsIterative(start int, graph map[int][]int) {
+
+	visited := make(map[int]bool)
+	stack := []int{start}
+
+	visited[start] = true
+
+	for len(stack) > 0 {
+		node := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+
+		fmt.Printf("%v ", node)
+
+		for i := len(graph[node]) - 1; i >= 0; i-- {
+
+			child := graph[node][i]
+			if !visited[child] {
+				visited[child] = true
+				stack = append(stack, child)
+			}
+		}
+
+	}
+
+}
+
 func dfs(node int, visited []bool, graph map[int][]int) {
 
 	visited[node] = true
@@ -29,8 +55,8 @@ func main() {
 		5: {3},
 	}
 
-	visited := make([]bool, len(graph)+1)
+	//visited := make([]bool, len(graph)+1)
 
-	dfs(0, visited, graph)
+	dfsIterative(0, graph)
 
 }
